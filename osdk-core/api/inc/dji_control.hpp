@@ -83,6 +83,7 @@ public:
     const static int exitCalibrateCompass = 21;
     const static int landingGearDown      = 28;
     const static int landingGearUp        = 29;
+    const static int forceLand        = 31;
   };
   // clang-format off
   /*! @brief bit 5:4 of the 8-bit (7:0) CtrlData.flag
@@ -379,6 +380,20 @@ public:
    *  will be executed
    */
   void land(VehicleCallBack callback = 0, UserData userData = 0);
+
+  /*! @brief Wrapper function for force landing
+   *
+   *  @platforms M210V2, M300
+   *  @return ACK::ErrorCode struct with the acknowledgement from the FC
+   */
+  ACK::ErrorCode forceLand(int wait_timeout);
+  /*! @brief Wrapper function for force landing
+   *
+   *  @platforms M210V2, M300
+   *  @note If user does not provide his/her own callback, default callback
+   *  will be executed
+   */
+  void forceLand(VehicleCallBack callback = 0, UserData userData = 0);
 
   /*! @brief Control the vehicle using user-specified mode
    *

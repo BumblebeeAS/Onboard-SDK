@@ -328,6 +328,28 @@ Control::land(VehicleCallBack callback, UserData userData)
   }
 }
 
+ACK::ErrorCode
+Control::forceLand(int wait_timeout)
+{
+  if (!(vehicle->isLegacyM600()) && !(vehicle->isM100()))
+  {
+    return this->action(FlightCommand::forceLand, wait_timeout);
+  }
+  else
+  {
+    return ACK::ErrorCode{};
+  }
+}
+
+void
+Control::forceLand(VehicleCallBack callback, UserData userData)
+{
+  if (!(vehicle->isLegacyM600()) && !(vehicle->isM100()))
+  {
+    this->action(FlightCommand::forceLand, callback, userData);
+  }
+}
+
 void
 Control::flightCtrl(CtrlData data)
 {
